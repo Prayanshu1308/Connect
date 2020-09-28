@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "457348356910",
+    "firebase_url": "https://connect-d95c2.firebaseio.com",
+    "project_id": "connect-d95c2",
+    "storage_bucket": "connect-d95c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457348356910:android:461b9fa484502bbb3b38bf",
+        "android_client_info": {
+          "package_name": "com.hncc.connect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "457348356910-eid45n2u52caarm5qot1lgigijorsjvi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4j8WXUz0TU6Kd480acFrdN3kr_mXPs2k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "457348356910-eid45n2u52caarm5qot1lgigijorsjvi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
