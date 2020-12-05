@@ -67,10 +67,12 @@
             app:layout_constraintTop_toBottomOf="@+id/feed_details">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/feed_img_card_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="210dp"
                 app:cardCornerRadius="12dp"
-                android:backgroundTint="#C8CDD3">
+                android:backgroundTint="#C8CDD3"
+                android:elevation="20dp">
                 <ImageView
                     android:id="@+id/each_post_image"
                     android:layout_width="match_parent"

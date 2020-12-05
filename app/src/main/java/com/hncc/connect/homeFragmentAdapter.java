@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -68,7 +69,7 @@ public class homeFragmentAdapter extends RecyclerView.Adapter {
         if(!PostImageUrl.equals("no_post_img")){
             Picasso.get().load(PostImageUrl).into(FeedHolder.feedImage);
         }else {
-            FeedHolder.feedImage.setVisibility(View.GONE);
+            FeedHolder.feedImgCardView.setVisibility(View.GONE);
         }
 
         FeedHolder.feedText.setText(feed.getPostMessage());
@@ -209,6 +210,7 @@ public class homeFragmentAdapter extends RecyclerView.Adapter {
 
         CircleImageView feedProfileImage;
         ImageView feedLikeImg;
+        CardView feedImgCardView;
         TextView feedProfileName;
         TextView feedDateAndTime;
         ImageView feedImage;
@@ -221,6 +223,7 @@ public class homeFragmentAdapter extends RecyclerView.Adapter {
             feedProfileImage = itemView.findViewById(R.id.feed_profile_img);
             feedProfileName = itemView.findViewById(R.id.each_post_name_text_view);
             feedDateAndTime= itemView.findViewById(R.id.each_post_date_and_time_text_view);
+            feedImgCardView = itemView.findViewById(R.id.feed_img_card_view);
             feedImage = itemView.findViewById(R.id.each_post_image);
             feedText = itemView.findViewById(R.id.feed_text);
             feedLikeImg = itemView.findViewById(R.id.like_button);

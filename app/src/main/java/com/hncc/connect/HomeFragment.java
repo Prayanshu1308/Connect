@@ -115,6 +115,8 @@ public class HomeFragment extends Fragment {
                     homeFragmentAdapter = new homeFragmentAdapter(homeFragmentList, getContext());
                     homeRecyclerView.setAdapter(homeFragmentAdapter);
 
+                    homeRecyclerView.getRecycledViewPool().setMaxRecycledViews(0, 0);
+
                 }
 
                 @Override
