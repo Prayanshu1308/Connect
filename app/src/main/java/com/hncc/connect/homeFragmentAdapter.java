@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,7 +75,7 @@ public class homeFragmentAdapter extends RecyclerView.Adapter {
 
         final String postPushId = feed.getPostPushId();
 
-        FeedHolder.feedLikes.setText(feed.getPostLikes()+" Likes");
+        FeedHolder.feedLikes.setText(feed.getPostLikes());
         final boolean[] isPostLiked = {false};
         postRef.child(postPushId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -84,7 +83,8 @@ public class homeFragmentAdapter extends RecyclerView.Adapter {
                 if(snapshot.hasChild("likedBy")){
                     if(snapshot.child("likedBy").hasChild(currentUserId)){
                         isPostLiked[0] = true;
-                        FeedHolder.feedLikes.setTextColor(Color.parseColor("#318fb5"));
+                        FeedHolder.feedLikeImg.setImageResource(R.drawable.vector_like);
+                        //FeedHolder.feedLikes.setTextColor(Color.parseColor("#318fb5"));
                     }else isPostLiked[0] = false;
                 }else isPostLiked[0] = false;
             }
@@ -100,7 +100,7 @@ public class homeFragmentAdapter extends RecyclerView.Adapter {
             FeedHolder.feedDelete.setVisibility(View.VISIBLE);
         }
 
-        FeedHolder.feedLikes.setOnClickListener(new View.OnClickListener() {
+        FeedHolder.feedLikeImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -135,8 +135,8 @@ public class homeFragmentAdapter extends RecyclerView.Adapter {
                                     FirebaseDatabase.getInstance().getReference()
                                             .child("posts").child(postPushId).child("likedBy").child(currentUserId).removeValue();
 
-                                    FeedHolder.feedLikes.setTextColor(Color.parseColor("#aaaaaa"));
-                                    FeedHolder.feedLikes.setText(postLikes +" Likes");
+                                    FeedHolder.feedLikeImg.setImageResource(R.drawable.vector_unlike);
+                                    FeedHolder.feedLikes.setText(postLikes);
 
 
                                 }
@@ -144,19 +144,19 @@ public class homeFragmentAdapter extends RecyclerView.Adapter {
 
                 }
                 else {
-                    final String postLikes = String.valueOf(Integer.parseInt(feed.getPostLikes()) + 1);
-                    feed.setPostLikes(postLikes);
+                    final String postLikes2 = String.valueOf(Integer.parseInt(feed.getPostLikes()) + 1);
+                    feed.setPostLikes(postLikes2);
                     FirebaseDatabase.getInstance().getReference()
                             .child("posts").child(postPushId).child("likes")
-                            .setValue(postLikes)
+                            .setValue(postLikes2)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     FirebaseDatabase.getInstance().getReference()
                                             .child("posts").child(postPushId).child("likedBy").child(currentUserId).setValue(currentUserId);
 
-                                    FeedHolder.feedLikes.setTextColor(Color.parseColor("#318fb5"));
-                                    FeedHolder.feedLikes.setText(postLikes+" Likes");
+                                    FeedHolder.feedLikeImg.setImageResource(R.drawable.vector_like);
+                                    FeedHolder.feedLikes.setText(postLikes2);
                                 }
                             });
 
@@ -208,6 +208,7 @@ public class homeFragmentAdapter extends RecyclerView.Adapter {
     public class FeedHolder extends RecyclerView.ViewHolder {
 
         CircleImageView feedProfileImage;
+        ImageView feedLikeImg;
         TextView feedProfileName;
         TextView feedDateAndTime;
         ImageView feedImage;
@@ -217,11 +218,12 @@ public class homeFragmentAdapter extends RecyclerView.Adapter {
 
         public FeedHolder(View itemView) {
             super(itemView);
-            feedProfileImage = itemView.findViewById(R.id.each_post_image);
+            feedProfileImage = itemView.findViewById(R.id.feed_profile_img);
             feedProfileName = itemView.findViewById(R.id.each_post_name_text_view);
             feedDateAndTime= itemView.findViewById(R.id.each_post_date_and_time_text_view);
-            feedImage = itemView.findViewById(R.id.feed_image);
+            feedImage = itemView.findViewById(R.id.each_post_image);
             feedText = itemView.findViewById(R.id.feed_text);
+            feedLikeImg = itemView.findViewById(R.id.like_button);
             feedLikes = itemView.findViewById(R.id.feed_likes);
             feedDelete = itemView.findViewById(R.id.feed_delete);
         }

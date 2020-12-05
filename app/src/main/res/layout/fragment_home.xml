@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeFragment">
+    tools:context=".HomeFragment"
+    >
 
     <TextView
         android:id="@+id/my_feed_label"
@@ -12,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Your Feed"
         android:textColor="#393b44"
+        android:background="#C8CDD3"
         android:textStyle="bold"
         android:textSize="18sp"
         android:padding="3dp"
@@ -22,12 +24,14 @@
         android:id="@+id/homeRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="5dp"
         android:layout_marginBottom="60dp"
-
+        tools:listitem="@layout/each_feed"
+        android:background="#C8CDD3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_feed_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
